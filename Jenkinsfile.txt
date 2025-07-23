@@ -1,0 +1,17 @@
+pipeline {
+  agent any
+  stages {
+    stage('Clone Repo') {
+      steps {
+        git 'https://github.com/your-username/server-monitor-devops.git'
+      }
+    }
+    stage('Build and Deploy') {
+      steps {
+        sh 'docker-compose down'
+        sh 'docker-compose build'
+        sh 'docker-compose up -d'
+      }
+    }
+  }
+}
